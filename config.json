@@ -1,0 +1,1509 @@
+{
+  "version": "0.1.0",
+  "summary": {
+    "title": "Introduction",
+    "description": "Welcome to the Relational Database Lessons! You will be using PostgreSQL for this section. It's an extremely popular open source relational database management systems (RDBMS). My goal is to teach you everything I can about it and relatational databases."
+  },
+  "config": {
+    "testRunner": {
+      "command": "npm run programmatic-test"
+    },
+    "repo": {
+      "uri": "https://github.com/moT01/rdbms",
+      "branch": "v0.1.0"
+    }
+  },
+  "levels": [
+    {
+      "id": "eXeBRixc1",
+      "title": "Start",
+      "summary": "",
+      "content": "The first thing you need to do is start the database service up so you can log in and play around with it. Your virtual machine comes with PostgreSQL (psql) installed. In order to start it, type this command into the terminal:\n\n```bash\nsudo service postgresql start\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "HHQi8sSOOe",
+          "setup": {
+            "commits": [
+              "fa8edc5",
+              "98acff8",
+              "c51dd02",
+              "dd3f299"
+            ],
+            "commands": [
+              "npm install"
+            ]
+          },
+          "content": "You should start the PostgreSQL service\n"
+        }
+      ]
+    },
+    {
+      "id": "DADTzxl7A7",
+      "title": "Login",
+      "summary": "",
+      "content": "The psql service is now running. In order to interact with it, you need to log in. Use this command to do so:\n\n```bash\nsudo -u postgres psql\n```\n\nThe `-u` stand for `username`. This will log you in as `postgres`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "XOZRwuHRcN",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should be logged in to psql\n"
+        }
+      ]
+    },
+    {
+      "id": "8O-iZUDEzx",
+      "title": "View Databases",
+      "summary": "",
+      "content": "I noticed the command prompt changed to `postgres=#`. That must mean you are connected to the service. First thing to do is to see what databases are all here.\n\nType `\\l` into the PostgreSQL prompt to **l**ist them.\n\nHmm, I got this screen with a bunch of `~` and `(END)`. If you see something like that or a `:` instead of the prompt at the bottom, it means there wasn't enough room to display all the information. Press `Q` to get back to the prompt, make your terminal window bigger, and try `\\l` again.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "HT-Mi55MxZ",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should see the databases\n"
+        }
+      ]
+    },
+    {
+      "id": "C7Jzi-wlc3",
+      "title": "Create firstdatabase",
+      "summary": "",
+      "content": "The database you see are there by default with psql. You will want to make your own to use.\n\nI figured out the command to create a new database; `CREATE DATABASE databasename;`. The capitalized words are keywords telling psql what to do. The name of the database will be the lowercase word. **All commands need a semi-colon at the end**, so don't forget to add that.\n\nYou should try creating a new database, give it a name of `firstdatabase`.\n\nYou should get a message that says \"CREATE DATABASE\". That means the command worked. If the command didn't work, there will be an error message and you need to try again. If you didn't get a message at all, that means that you did not complete the command yet. You likely forgot the semi-colon, type one and press enter.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "IK8hPL4i31",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a databasee named `firstdatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "MIPEv3E_X8",
+      "title": "View firstdatabase",
+      "summary": "",
+      "content": "Use the **l**ist command again to verify that your new database is there.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "DEMwimmn2y",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should see your new database\n"
+        }
+      ]
+    },
+    {
+      "id": "1aLyMOXw2n",
+      "title": "Create seconddatabase",
+      "summary": "",
+      "content": "Create another database like you did before. Name this one `seconddatabase`.\n\nAfter your done, take another look at the databases with the `\\l` command to make sure it worked.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "CTHo2IVHTX",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a database named `seconddatabase`\n"
+        },
+        {
+          "id": "_C-HYAmEPf",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed your databases\n"
+        }
+      ]
+    },
+    {
+      "id": "Qjo-DDaLey",
+      "title": "Connect to seconddatabase",
+      "summary": "",
+      "content": "You know how to create an empty database now. Let's go play around with your new database a little. **c**onnect to the database by entering `\\c seconddatabase`. You should get a message telling you that you are connected. I also noticed that the prompt changed to `seconddatabase=#`. So the `postgres=#` prompt before must have meant that you were connected to that default database.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "7un5YAKnIN",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should be connected to `seconddatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "l_-JN1WQMd",
+      "title": "View tables in seconddatabase",
+      "summary": "",
+      "content": "A database is made of tables that hold your data. Take a look at what tables are in this database by typing `\\d` into the prompt. This will **d**isplay the tables. Right now, there aren't any.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "et3-ivjnSaw",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the tables\n"
+        }
+      ]
+    },
+    {
+      "id": "buV5YsFmGbk",
+      "title": "Try creating firsttable",
+      "summary": "",
+      "content": "You can create a table similar to how you created a database. Instead of `CREATE DATABASE databasename;`, you use `CREATE TABLE tablename;`. Try creating a table named `firsttable`, don't forget the semi-colon.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "qzkneAGpNmV",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have tried to create `firsttable`\n"
+        }
+      ]
+    },
+    {
+      "id": "_i5wE-TELPg",
+      "title": "Create firsttable",
+      "summary": "",
+      "content": "You should have gotten an error. You cannot create a table without providing it at least one column. A column needs a name and a data type. To add a column when creating a table, put the name and data type in parethesis like this:\n\n```sql\nCREATE TABLE tablename(columnname DATATYPE);\n```\n\nTry creating `firsttable` again, this time give it a column with the name `firstcolumn` and a data type of `INT`. `INT` stands for integer. Don't forget the semi-colon.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "Pgv-MX1sK8j",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a table named `firsttable`\nYour table should have a column named `firstcolumn` of type `integer`\n"
+        }
+      ]
+    },
+    {
+      "id": "QM9bZForLag",
+      "title": "View firsttable details",
+      "summary": "",
+      "content": "Try displaying your tables again with `\\d`. This time you should see your new table with a little meta data about it.\n\nAfter you have checked that out, display more details about your table by typing `\\d firsttable`. Here you can see what columns your table has and information about each column. The one column you added is of type `INT`, so it expects an integer when data is added to it.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "Ag-6URmuAsD",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the tables in `seconddatabase`\n"
+        },
+        {
+          "id": "eWp7dKVBJZ0",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed details about `firsttable`\n"
+        }
+      ]
+    },
+    {
+      "id": "OB1dLN-C8SL",
+      "title": "Create table2",
+      "summary": "",
+      "content": "Try creating another new table in this database. Give it a name of `table2` that has one column named `id` of data type `INT`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "PUVvD_-HIjj",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a table named `table2`\n`table2` should have a column named `id` of type `integer`\n"
+        }
+      ]
+    },
+    {
+      "id": "Dpcp9QMj5yi",
+      "title": "View table2 details",
+      "summary": "",
+      "content": "Take another look at the tables in this database with `\\d`. There should be two now.\n\nAfter that, view the details of `table2`. You should see the table with your `id` column added.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "p1TU8-mWlED",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the tables in this database\n"
+        },
+        {
+          "id": "9kOLD7CCc03",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "8oOqoOhkWD6",
+      "title": "ADD COLUMN uname",
+      "summary": "",
+      "content": "So you figured out how to create some databases and tables with a column. How can you add more columns to a table after it's already created? I found a command called `ALTER TABLE`, it's used to alter an existing table. To use it, you need to add the table name after it and the alteration you want to make. A couple alteration keywords include: `ALTER COLUMN`, `RENAME COLUMN`, and `ADD COLUMN`. You want to use the `ADD COLUMN` here. Here's an example:\n\n```sql\nALTER TABLE tablename ADD COLUMN columnname datatype;\n```\n\nAdd a new column to `table2`, give the column a name of `uname` and a data type of `VARCHAR(30)`. Don't forget the semi-colon.\n\nThe `VARCHAR` data type is basically just a short string. The `30` after it is how long that string is allowed to be. If you made a typo with your values, just try entering another column with the correct values.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "0u-jZOHlvgT",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a `uname` column to `table2`\nThe `uname` column should of type `VARCHAR` with a max length of `30`\n"
+        }
+      ]
+    },
+    {
+      "id": "KRcrki4fOz5",
+      "title": "View table2",
+      "summary": "",
+      "content": "Take another look at the details of `table2`. You should see your new column there. These columns are the top row of a database table. They define and help you to understand the data that will be entered into the table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "zE8kdcRPvCm",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "0Kl5SuwTxrV",
+      "title": "Drop uname",
+      "summary": "",
+      "content": "Mistakes happen. I told you to name that column `uname`, but I actually wanted it to be `username`. Another group of alteration keywords for tables are `DROP COLUMN`. This will remove a column from the table. Here's an example:\n\n```sql\nALTER TABLE tablename DROP COLUMN columnname;\n```\n\nRemove the `uname` column you just created so you can create a new column with a proper name.\n\nAfter you are done, take a look at the details of `table2` again to make sure it's gone.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "OI-7Q-mjpky",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should dropped `uname`\n"
+        },
+        {
+          "id": "cKzSC2dP5JM",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "E-DKfF_3Awp",
+      "title": "Add column username",
+      "summary": "",
+      "content": "Okay, try adding a new column again but with the proper name this time. As a reminder, I wanted the name to be `username` of the type `VARCHAR(30)`;\n\nWhen you are done. Take a look at the details of `table2` to make sure it worked.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "UH37_7w9eTi",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a `username` column to `table2`\nThe `username` column should of type `VARCHAR` with a max length of `30`\n"
+        },
+        {
+          "id": "xU5FaWq6xrg",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "b9TO8wVxZz4",
+      "title": "Insert Samus Into table2",
+      "summary": "",
+      "content": "Much better. Your table has two columns, now you can try inserting some data into the table. To do this, you need to use the `INSERT INTO` keywords. The command looks like this:\n\n```sql\nINSERT INTO tablename(column1name, column2name) VALUES(column1value, column2value);\n```\n\nTry inserting a single row into `table2`. Give the row an `id` of `1`, and a `username` of `Samus`. Remember that the username column expects a string, so you need to put Samus in single quotes like this: `'Samus'`.\n\nAs a reminder, if you don't see a message after pressing enter, you have not completed your command. Don't forget the semi-colon!\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "IbKXVnEpDia",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have inserted a record into `table2`\nThe record should have an `id` of `1`, and a `username` of `Samus`\n"
+        }
+      ]
+    },
+    {
+      "id": "Q7HuI7RjYhp",
+      "title": "Select * From table2",
+      "summary": "",
+      "content": "You should now have at least one record in your table. How can you verify that it's there? There is no shortcut command for viewing data like there is for viewing tables. Introducing, the `SELECT` statement. A select statment allows you to pick records from your tables. Here's how it looks:\n\n```sql\nSELECT rows FROM tablename;\n```\n\nUse a `SELECT` statement to view **all** of the rows in `table2`. An asterisk (`*`) is used to denote that you want to see all of the records.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "n0LNZDtuJ0s",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the rows in `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "0pnheYkrf4N",
+      "title": "Insert Mario into table2",
+      "summary": "",
+      "content": "Insert another row into `table2` like you did before. Use `2` as the `id`, and `Mario` as the username this time.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "Y3JdmipUIud",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should inserted a second row into `table2`\nYour new record should have an `id` of `2`, and a `username` of `'Mario'`\n"
+        }
+      ]
+    },
+    {
+      "id": "rU_0Pnf7Rlt",
+      "title": "Select * From table2",
+      "summary": "",
+      "content": "Use a `SELECT` statement again to view all the records in `table2`. You should now see two rows in the table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "Gg2nkxlYyrG",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the rows in `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "6zHy7tt1tBU",
+      "title": "Insert Luigi into table2",
+      "summary": "",
+      "content": "Insert another row into `table2`. Use `3` as the `id`, and `Luigi` as the username this time.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "oBt-9p51Ycw",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have inserted a third row into `table2`\nThe new record should have an `id` of `3`, and a `username` of `'Luigi'`\n"
+        }
+      ]
+    },
+    {
+      "id": "5Ua91YBmAPz",
+      "title": "Select * From table2",
+      "summary": "",
+      "content": "Use a `SELECT` statement again to view all the records in `table2`. You should now see three rows in the table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "2urWhn2hbB4",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the rows in `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "Fa9FAZP_PDh",
+      "title": "Drop Luigi",
+      "summary": "",
+      "content": "Okay, that gives me an idea. You can help me make a database of characters from the Mario video games. That sounds like fun. Unfortunately, I don't like how your tables are structured for that or the names of things. Sorry, but I think it's best to start from scratch for this. Why don't you delete the record you just entered. Here's an example of how you can do that:\n\n```sql\nDELETE FROM tablename WHERE condition;\n```\n\nThe condition you want to use is `username='Luigi'`. This will remove Luigi from your table. If you omit the `WHERE` and condition, it will delete all the records, so be careful.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "kQiYh1yVe5A",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have deleted `Luigi` from `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "kBK32MO0oRK",
+      "title": "Select * From table2",
+      "summary": "",
+      "content": "Use a `SELECT` statement again to view all the records in `table2`. Luigi should be gone.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "pGFelyOeddk",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the rows in `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "8PpswjulLvN",
+      "title": "Delete Mario",
+      "summary": "",
+      "content": "Delete Mario from `table2`. Use the same command you used before except make the condition `username='Mario'` this time.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "VZ9zwxrqFIP",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have deleted `Mario` from `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "bAJbkmWLEKi",
+      "title": "Delete Samus",
+      "summary": "",
+      "content": "Only one more records should remain. Delete Samus from `table2`.\n\nAfter you are done, use a `SELECT` statement to view all the data in `table2` again. It should be empty now. If it's not, why don't you delete the rest of the records in there.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "Nz5SzFtHHLU",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have deleted `Samus` from `table2`\n"
+        },
+        {
+          "id": "t1Lhtopji1g",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the records in `table2`\nYour table should be empty\n"
+        }
+      ]
+    },
+    {
+      "id": "RBcEyD8Y3AP",
+      "title": "Drop table2",
+      "summary": "",
+      "content": "Take a quick look at what tables you have in your database. There should be two of them still.\n\nYou won't be needing any of these tables for your Mario database. Delete `table2` from this database. Here's how to delete a table:\n\n```sql\nDROP TABLE tablename;\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "2fUqJbwXcIX",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the tables\n"
+        },
+        {
+          "id": "-84wVD7l8hS",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have dropped `table2`\n"
+        }
+      ]
+    },
+    {
+      "id": "NM7kk7cBbKF",
+      "title": "Drop firsttable",
+      "summary": "",
+      "content": "Next, drop your `firsttable` table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "vKTpoYpbAWC",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have deleted `firsttable`\n"
+        }
+      ]
+    },
+    {
+      "id": "UvHpDClCzqO",
+      "title": "Drop seconddatabase attempt",
+      "summary": "",
+      "content": "Remind me what databases you have by using the command to view them.\n\nIt looks like you still have the two there that you created. Use the `DROP DATABASE` keywords to delete `seconddatabase`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "-81nFttAdUl",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed your databases.\n"
+        },
+        {
+          "id": "6P-Rm2o4pj-",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have tried to drop `seconddatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "zlOGVNScB69",
+      "title": "Connect to firstdatabase",
+      "summary": "",
+      "content": "That clearly didn't work. It says you cannot drop the currently opened database. Use the shortcut command needed to **c**onnect to `firstdatabase`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "MgAgRPEd5sF",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should be connected to `firstdatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "qgY8VGZ4q5m",
+      "title": "Drop seconddatabase",
+      "summary": "",
+      "content": "Now that you aren't connected to `seconddatabase`, try to delete it again.\n\nBe sure to use those shortcut commands when you need to view your tables and databases. It really helps to frequently look at those as a reminder.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "RY22IDxfE3w",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have dropped `seconddatabase`\n\n[comment]: # ( ========== ========== ========== Start creation of mario database ========== ========== ========== )\n"
+        }
+      ]
+    },
+    {
+      "id": "uBXlXtNU8MF",
+      "title": "Rename to mariodatabase",
+      "summary": "",
+      "content": "Okay, time to start creating the Mario database. Instead of dropping `firstdatabase`, you can rename this database and go from there. Earlier, you used the `ALTER TABLE` keywords in conjunction with `ADD COLUMN` to change a table. Similarily, you can use `ALTER DATABASE` to change database properties. Use the `ALTER DATABASE` and `RENAME TO` keywords to rename `firstdatabase` to `mariodatabase`. Be sure to put the groups of words in the right order.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "In-bcWD4EaM",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have tried to renamed this database to `mariodatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "WLq-jp0wiZg",
+      "title": "Connect to postgres",
+      "summary": "",
+      "content": "Alright, I'm getting a little frustrated. Connect to the `postgres` database you started on.\n\nAfter that, try to rename `firstdatabase` to `mariodatabase` again. It should work this time.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "aetrjEBlyCv",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should be connected to the `postgres` database\n"
+        },
+        {
+          "id": "kB2R477NW3C",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have renamed `firstdatabase` to `mariodatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "cSI7dvreQZx",
+      "title": "Connect to mariodatabase",
+      "summary": "",
+      "content": "Now that you have named the database how I want. You can connect back to that one. Do that now.\n\nAfter you are done, remind me what tables you have in it.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "wjEqaEDnbzL",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should be connected to `mariodatabase`\n"
+        },
+        {
+          "id": "rAF6zp_c7Ep",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the tables in `mariodatabase`\n"
+        }
+      ]
+    },
+    {
+      "id": "pp_HcKk-WlU",
+      "title": "Create Characters Table",
+      "summary": "",
+      "content": "Okay, you are ready to start the Mario database for me. I want the fist table to be named `characters`. It will hold some basic character information. I explained before that when creating a table, you need to give it at least one initial column. You also need to give that column a data type. There's a special \"pseudo-type\" in psql called `SERIAL`. If you define a column with this type, it gives your column a data type of `INT`, a **constraint** of `NOT NULL`, and it will automatically increment the integer each time a record is entered into the table.\n\nCreate a new table named `characters`. Give the characters table an initial column of `characterid` that has a type of `SERIAL`.\n\nAs a reminder, here's how you created your `table2` before:\n\n```\nCREATE TABLE table2(id INT);\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "EuX_RFeij8y",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a new table named `characters`\n`characters` table should have a `characterid` column of type `SERIAL`\n"
+        }
+      ]
+    },
+    {
+      "id": "3gfCb-rqZkh",
+      "title": "View characters details",
+      "summary": "",
+      "content": "View the details of the `characters` table.\n\nYou can see that the `SERIAL` type gave your column a data type of `INT` (integer), and a constraint of `NOT NULL`. That third column is a function that will automatically set the value of this field when data is entered into the table. So basically, you won't need to worry about filling in this id field when entering data, it will all happen for you.\n\nConstraints are just additional conditions of the column. `NOT NULL` means exactly that; data entered into the column cannot be null. Some other constraints include: `UNIQUE`, `CHECK`, `PRIMARY KEY`, and `FOREIGN KEY`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "bhrXgReiivZ",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of the `characters` table\n"
+        }
+      ]
+    },
+    {
+      "id": "M23NqbN9ZDv",
+      "title": "Add column name",
+      "summary": "",
+      "content": "So what columns can you add to this table to describe Mario characters? Well, they all have a name... I think anyway.\n\nAdd another column to your `characters` table called `name`. Give the name column a data type of `VARCHAR(30)`, and a constraint of `NOT NULL`. \n\nTo add a constraint along with a data type, you can just put it right after the data type, e.g. `VARCHAR(30) NOT NULL`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "V-YCpBLcFAr",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a column named `name` to the `characters` table\nYour new column should be of type `VARCHAR` with a max length of `40` and have a constraint of `NOT NULL`\n"
+        }
+      ]
+    },
+    {
+      "id": "57Ps9vpA8sz",
+      "title": "Add column gender",
+      "summary": "",
+      "content": "What else do characters have? How about a gender?\n\nAdd another column to your `characters` table named `gender`. Give the column a data type of `VARCHAR` that has a max length of `1`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "ds6u7mhksIa",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a column named `gender` to the `character` table\n`gender` should be a `VARCHAR` with a max length of `1`\n"
+        }
+      ]
+    },
+    {
+      "id": "9UVJ9EbtZE5",
+      "title": "Add column favoritecolor",
+      "summary": "",
+      "content": "Video game characters are quite colorful. Why don't you add another column named `favoritecolor`. Give it a data type of `VARCHAR` with a max length of `30`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "OJGR3uXWmHI",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a column named `favoritecolor`\n`favoritecolor` should be of type `VARCHAR` with a max length of 30\n"
+        }
+      ]
+    },
+    {
+      "id": "WxSBU0JkOOA",
+      "title": "Check table",
+      "summary": "",
+      "content": "Take a look at the details of the `characters` table again to see how things are coming along. You should have four columns. If you accidentally made a typo and had to add additional columns, why don't you clean that up. Here's a command do delete unwanted columns:\n\n```sql\nALTER TABLE tablename DROP COLUMN columnname;\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "igtoHbbxzHa",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "Your `characters` table should have the four columns I asked you to add\n"
+        }
+      ]
+    },
+    {
+      "id": "odBCgm4g8rK",
+      "title": "Insert Mario",
+      "summary": "",
+      "content": "Alright, your table has enough columns to start adding some data. First, add Mario to the table. Here's a command you used to add data to your `table2` earlier:\n\n```sql\nINSERT INTO table2(id, username) VALUES(1, 'Samus');\n```\n\nThe first group of parenthesis are the column names, you can put as many in there as you want. The second group of parenthesis are the values for those columns. Add a new row into your table, give the row a `name` of `Mario`, a `gender` of `M`, and a `favoritecolor` of `red`. Remeber that these values are expected to be strings so they all need to be in single quotes.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "0gJRmEjo8GC",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a new row to your table with these values:\nYour row should have a `name` of `Mario`\nYour row should have a `gender` of `M`\nYour row should have a `favoritecolor` of `red`\n"
+        }
+      ]
+    },
+    {
+      "id": "m4nhuSRG1wK",
+      "title": "Select * from characters",
+      "summary": "",
+      "content": "View all the data in your `characters` table with a `SELECT` query. You should see the row you just added. You can see that the `characterid` field was automatically added.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "tWDCINpRt_H",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the data in your table\n"
+        }
+      ]
+    },
+    {
+      "id": "xt0Jo_tmPX5",
+      "title": "Insert Luigi",
+      "summary": "",
+      "content": "Add a new row to your table for Luigi with the `INSERT INTO` keywords like you did for Mario. Give the row a `name` of `Luigi`, and `gender` of `M`, and a `favoritecolor` of `green`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "uAE8mF7rr9V",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a new row to your table\nYour row should have a `name` of `Luigi`\nYour row should have a `gender` of `M`\nYour row should have a `favoritecolor` of `green`\n"
+        }
+      ]
+    },
+    {
+      "id": "s_uLJttFnFG",
+      "title": "Insert Peach",
+      "summary": "",
+      "content": "Add another row for Peach. Give her the values: `Peach`, `F`, and `pink`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "ZoCjIEa82-m",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a new row to your table\nYour row should have a `name` of `Peach`\nYour row should have a `gender` of `F`\nYour row should have a `favoritecolor` of `pink`\n"
+        }
+      ]
+    },
+    {
+      "id": "djQFkT_OlXE",
+      "title": "Select * from table",
+      "summary": "",
+      "content": "If you haven't been taking a look at the data after you add it, now is a good time to make sure things are being added correctly. Use a `SELECT` statement again to view all the data in your table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "muEYBDQ0gYX",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the data in your table\n"
+        }
+      ]
+    },
+    {
+      "id": "sYerOaQbBO7",
+      "title": "Add Toad and Bowser",
+      "summary": "",
+      "content": "Adding rows one at a time it quite tedious. Fortunately, you don't need to do it like that. You can simply add many records with one command by adding a comma and another group of parenthesis with more values. Here's an example of how you could have added the previous three records at once:\n\n```sql\nINSERT INTO characters(name, gender, favoritecolor) VALUES('Mario', 'M', 'red'), ('Luigi', 'M', 'green'), ('Peach', 'F', 'pink');\n```\n\nMan, that is a long command. I mentioned earlier that if you don't get a message after entering a psql command, it's likely that you forgot your semi-colon and the command is incomplete. This is because you can use multiple lines to execute commands. So you can just add some line breaks to make the command more readable; and when you're ready, add the semi-colon to finish the command. Here's the same command on multiple lines:\n\n```sql\nINSERT INTO characters(name, gender, favoritecolor) VALUES\n('Mario', 'M', 'red'), \n('Luigi', 'M', 'green'), \n('Peach', 'F', 'pink');\n```\n\nThat's much easier to read. Try adding two records at once. Give the first one these values: `Toad`, `M`, and `red`. Give the second one: `Bowser`, `M`, and `yellow`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "wE8HtFk-aRW",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added two rows to your table\nOne row should have `Toad`, `M`, and `red` as values\nOne row should have `Bowser`, `M`, and `yellow` as values\n"
+        }
+      ]
+    },
+    {
+      "id": "rusBeGmoWrq",
+      "title": "Add Yoshi and Daisy",
+      "summary": "",
+      "content": "Add two more rows to your table. Give the first one values of: `Yoshi`, `M`, and `green`. Give the second row: `Daisy`, `F`, and `orange`. Try to add them both with one command.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "TnOQeZgNNdQ",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added two rows to your table\nOne row should have `Yoshi`, `M`, and `green` as values\nOne row should have `Daisy`, `F`, and `orange` as values\n"
+        }
+      ]
+    },
+    {
+      "id": "XWcOmWQPOOs",
+      "title": "Add Primary Key",
+      "summary": "",
+      "content": "Take another look at all the data in the table with a `SELECT` statement.\n\nNext, you are going to add a **primary key** to this table. A primary key is a column that uniquely identifies each record. Do you see any columns in the table that can be used for this? Looks like both the `characterid` and `name` columns are pretty unique. I suppose there's a chance that another character will come along with the same name, but you won't have any with the same id. Set the `characterid` as the primary key for this table. Here's an example of how to set an existing column to a primary key:\n\n```\nALTER TABLE tablename ADD PRIMARY KEY (columnname);\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "LEfoqhO8dBB",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the data in your table\n"
+        },
+        {
+          "id": "bt6KDe9hLMv",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have set `characterid` as the primary key for the `characters` table\n"
+        }
+      ]
+    },
+    {
+      "id": "GUHZAQasfY2",
+      "title": "View Primary Key",
+      "summary": "",
+      "content": "Take a look at the details of your `characters` table. You can now see the \"Indexes\" at the bottom with your `characterid` as the primary key. You should set a primary key on every table. This column can now be used to associate records from this table with records from another table. You will see what I am talking about later on.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "9YagUHJ_XKR",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of your `characters` table\n\n[comment]: # ( ========== ========== ========== Start creation of more info table ========== ========== ========== )\n"
+        }
+      ]
+    },
+    {
+      "id": "dJuies9Yz9H",
+      "title": "Create moreinfo table",
+      "summary": "",
+      "content": "Okay, I'm pretty satisfied with the `characters` table for now. Create a new table called `moreinfo`. This will have some more details about each of the characters. Give the table an initial column of `moreinfoid`. Give the column a type of `SERIAL` and a constraint of `PRIMARY KEY`. You should be able to do this all with one command.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "sDjkQ9CXtUR",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a table named `moreinfo`\nYour table should have a column named `moreinfoid`\n`moreinfoid` should be of type `SERIAL` \n`moreinfoid` should be the `PRIMARY KEY` for this table\n"
+        }
+      ]
+    },
+    {
+      "id": "mETDOd3P1JW",
+      "title": "Add column birthday",
+      "summary": "",
+      "content": "Add a column to your new table named `birthdate`. Give it a data type of `DATE`. You haven't used this data type before, it's for values that are dates. When entering data into this column, it needs to have a date format of: \"yyyy-mm-dd\", e.g. 2020-08-15.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "ezromVISbYj",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a `birthdate` column to `moreinfo`\nThe column should be of type `DATE`\n"
+        }
+      ]
+    },
+    {
+      "id": "HWR6_tkEt3r",
+      "title": "Add column age",
+      "summary": "",
+      "content": "Add a column to your new table named `age`. Give it a data type of `SMALLINT`. This data type is just a integer that takes up less space in the database and can't be higher or lower than 32,767 or lower than -32,767. There's also `BIGINT` for extra large numbers.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "1gdEvJO7v8b",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added an `age` column to your `moreinfo` table\nAge have a data type of `SMALLINT`\n"
+        }
+      ]
+    },
+    {
+      "id": "q8j0FS17nYW",
+      "title": "Add columns height and weight",
+      "summary": "",
+      "content": "Add two more columns to your table, `height` and `weight`. Give the `height` column a data type of `SMALLINT`, and the `weight` column a data type of `NUMERIC(4, 1)`. This `NUMERIC` type is basically for decimals. In this case, the `4` means that the number can contains four digits. The `1` means that one of those digits has to be on the right of the decimal. Try to add both of these columns with one command. Here's an example of how to do that:\n\n```sql\nALTER TABLE tablename\nADD COLUMN columnname datatype,\nADD COLUMN columnname datatype;\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "-r9VyHlPy8e",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a `height` column that is a `SMALLINT`\nYou should have added a `weight` column that is a `NUMERIC(4, 1)`\n"
+        }
+      ]
+    },
+    {
+      "id": "4oIntPmhTas",
+      "title": "Add foreign key",
+      "summary": "",
+      "content": "Okay, the `moreinfo` table is coming along. If you were to add a row here for one of the characters, how would you know what character that row is for? You need to set a **foreign key** in this table so the database knows how to relate the `moreinfo` table to the `characters` table. A foreign key in this table needs to **reference** a primary key column from another table. You set the `characterid` column as the primary key of your `characters` table. \n\nAdd a `characterid` column to the `moreinfo` table. Set it as an `INT` and make it a foreign key by referencing the `characterid` column from your `characters` table. Here's an example:\n\n```sql\nALTER TABLE tablename ADD COLUMN columnname datatype REFERENCES referencedtablename(referencedcolumnname);\n```\n\nThat's quite the command. Good luck.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "M1LWhDQxzOw",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a `characterid` column to the `moreinfo` table\nIt should reference the `characterid` column from the `characters` table\n"
+        }
+      ]
+    },
+    {
+      "id": "AMSuCJ_aEIl",
+      "title": "View details",
+      "summary": "",
+      "content": "Take a look at the details of your `moreinfo` table. You can see that your new column is set as the foreign key. This may be a good time to talk about relationships. There's three types that I want to show you before this is over; \"one-to-one\", \"one-to-many\", and \"many-to-many\". These relationships refer to how many pieces of data from one table are related to pieces of data from another table. In the case of the two table you have created, there will be **one** character that has **one** row for it in the `moreinfo` table. Therefore, these two tables share a \"one-to-one\" relationship.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "KR7vfETIEjz",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of the `moreinfo` table\n"
+        }
+      ]
+    },
+    {
+      "id": "8maXJRl1XLG",
+      "title": "Add Unique",
+      "summary": "",
+      "content": "I want two more contraints on your foreign key column. I want you to make sure it is always `UNIQUE` and always `NOT NULL`. This will ensure that you don't add a second row with a duplicate `characterid`. First add `UNIQUE`, here's an example of how to add it to an existing column:\n\n```sql\nALTER TABLE tablename ADD UNIQUE (columnname);\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "lpqcvOshSxX",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added the `UNIQUE` constraint to the `characterid` column\n"
+        }
+      ]
+    },
+    {
+      "id": "YbK5WWWJHTw",
+      "title": "ADD NOT NULL",
+      "summary": "",
+      "content": "Next, add the `NOT NULL` constraint to the same column. Here's an example of how to do that:\n\n```sql\nALTER TABLE tablename ALTER COLUMN columnname SET NOT NULL;\n```\n\nAfter you are done, take a look at the details of the `moreinfo` table again. Notice that all the properties you set are there; `INT`, `NOT NULL`, `UNIQUE`, and `FOREIGN KEY`. \n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "0wxWFKiCdsN",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have set the `characterid` foreign key to `NOT NULL`\n"
+        },
+        {
+          "id": "ijHJQCwmqv5",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the details of the `moreinfo` table\n"
+        }
+      ]
+    },
+    {
+      "id": "Rf42IC0mZAY",
+      "title": "SELECT COLUMN",
+      "summary": "",
+      "content": "So far, you have only use a `SELECT` statement to view all the data in a table. What if you only want some of the data? You can pick what columns to want to select quite easily. Instead of using the `*` to select all, you can just put the column name in there to select what columns you want. Use `SELECT` to view the `characterid` column from the `characters` table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "5C9z63Kt5Xz",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have queried the `characterid` column of your `characters` table\n"
+        }
+      ]
+    },
+    {
+      "id": "eLBht4OULCe",
+      "title": "SELECT COLUMNS",
+      "summary": "",
+      "content": "Okay, that list of numbers doesn't really show what I was hoping for. Use a `SELECT` statement again to display both the `characterid` and `name` columns from the `characters` table. You can just separate the column names with a comma in your query.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "iL2nZ0aEmfR",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have queried the `characterid` and `name` columns of your `characters` table\n\n"
+        }
+      ]
+    },
+    {
+      "id": "D9yyB6o3aMw",
+      "title": "Add more info for Mario",
+      "summary": "",
+      "content": "That's better, now you can see what I was hoping for. Next, you are going to start inserting some data into the `moreinfo` table. Use an `INSERT` statement to add a row for Mario. Use it to set a `birthdate` of `'1981-07-09'`, an `age` of `38`, a `height` of `175`, a `weight` of `64`, and the `characterid` to the id for `Mario` from the `characters` table.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "CDd2nbaE1n_",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added more info for Mario\nHis `birthdate` should be `1981-07-09`\nHis `age` should be `38`\nHis `height` should be `175`\nHis `weight` should be `64`\nHis `characterid` should be `1`\n"
+        }
+      ]
+    },
+    {
+      "id": "2bjz7A96nxe",
+      "title": "Select * from moreinfo",
+      "summary": "",
+      "content": "View all the data from the `moreinfo` table so you can see the entered info. Notice that you only have an id to know what character the info is for. \n\nAfter you have looked at all the data enter this command into the prompt:\n\n```sql\nSELECT * FROM characters FULL JOIN moreinfo ON characters.characterid = moreinfo.characterid;\n```\n\nThis is called a join command. I won't go into detail about them here, but you can see all the data now in one query. There's your Mario character with all of his data from both tables.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "AkmPdRqaWXY",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the data in the `moreinfo` table\n"
+        },
+        {
+          "id": "1KoZ-ufMYPD",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have entered the above `JOIN` command\n"
+        }
+      ]
+    },
+    {
+      "id": "lVFvb5Fh9v3",
+      "title": "Add more info for Luigu and Peach",
+      "summary": "",
+      "content": "Add more info for Luigi and Peach. Here's the info for them, in that order:\n\n| birthdate  | age | height | weight | characterid |\n| ---------- | --- | ------ | ------ | ----------- |\n| 1983-07-14 | 36  | 175    | 48.8   |             |\n| 1985-10-18 | 34  | 173    | 52.2   |             |\n\nUse the correct `characterid` from the `characters` table for each of the characters. Try adding all the info with one command.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "PYZkul8sZgd",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added info for Luigi that matches the table above\nYou should have added info for Peach that matches the table above\n"
+        }
+      ]
+    },
+    {
+      "id": "vhfdza_a8ZG",
+      "title": "Add more info for the rest",
+      "summary": "",
+      "content": "Fill in more info for the rest of the characters. Their data looks like this:\n\n| birthdate  | age | height | weight | characterid |\n| ---------- | --- | ------ | ------ | ----------- |\n| 1983-07-14 | 70  | 175    | 6      |             |\n| 1985-10-18 | 29  | 173    | 300    |             |\n| 1983-07-14 | 30  | 175    | 59.1   |             |\n| 1985-10-18 | 31  | NULL   | NULL   |             |\n\nFrom top to bottom, the rows refer to: Toad, Bowser, Yoshi, and Daisy. Add the appropriate `characterid` for each of them.\nDaisy didn't want to share her height and weight with me. You can just put the word `NULL` in there for now. `NULL` is not a string so it does not need to be in quotes.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "OS-tQDhOgYw",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added the correct info for Toad\nYou should have added the correct info for Bowser\nYou should have added the correct info for Yoshi\nYou should have added the correct info for Daisy\n"
+        }
+      ]
+    },
+    {
+      "id": "m32kcVr74XH",
+      "title": "Select * from moreinfo",
+      "summary": "",
+      "content": "Now that you have most of the data filled in, take one more look at the table.\n\nAfter that, enter this command again to see the tables together:\n\n```sql\nSELECT * FROM characters FULL JOIN moreinfo ON characters.characterid = moreinfo.characterid;\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "eVKyhSabrT5",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed the data in the `moreinfo` table\n"
+        },
+        {
+          "id": "3pAM1TTpNsn",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should entered the `JOIN` command above\n\n[comment]: # ( ========== ========== ========== Start creation of sounds table ========== ========== ========== )\n"
+        }
+      ]
+    },
+    {
+      "id": "m5mQroy-8YI",
+      "title": "Create table sounds",
+      "summary": "",
+      "content": "Create a new table called `sounds`. Initialize it with two columns. One that is named `soundid` with a type of `SERIAL` and a contraint of `PRIMARY KEY`. The second column should be named `filename`; make it a `VARCHAR` with a max length of `40` and a constrain of `UNIQUE`. You can add two columns with the `CREATE TABLE` command by putting both of them in the parethesis, separated by a comma. e.g. `tablename (column1details, column2details)`\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "cYnGjBKe6z8",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a table name `sounds`\nIt should have a column named `soundid` that is of type `SERIAL` and `PRIMARY KEY`\nIt should have a column named `filename` that is a `VARCHAR` with a max length of `40`\n"
+        }
+      ]
+    },
+    {
+      "id": "atLwpkcJ1sH",
+      "title": "Add foreign key to sounds",
+      "summary": "",
+      "content": "The sounds table will have a foreign key that will be used to identify which sounds are for which characters. It will be the same `characterid` column from the `characters` table. Add a column to the `sounds` table named `characterid`. Give it the properties: `INT`, `NOT NULL` and set it as a foreign key that references the `characterid` column from the `characters` table.\n\nHere's a reminder of what the part of the command that sets the foreign key looks like:\n\n```sql\nREFERENCES tablename(columnname)\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "J769h99973F",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a column named `characterid` that has all of the above properties\n"
+        }
+      ]
+    },
+    {
+      "id": "IFAwhOMaQmk",
+      "title": "Insert sounds for mario",
+      "summary": "",
+      "content": "The relationship you are creating between the `characters` and `sounds` table is called a \"one-to-many\" relationship. This is because each character will have many sounds that they use, but each sound will only have one character that uses it. So the character is the \"one\" in \"one-to-many\", and the sounds are the \"many\". You will see it better as you add in some data.\n\nAdd two rows to the sounds table, one with a `filename` of `its-a-me.wav` and the other `yipee.wav`. Both should use Mario's `characterid` as the value of the foreign key column.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "YF5X4cP1ZIP",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a row with `its-a-me.wav` as its `filename` and Mario's id as its `characterid`\nYou should have added a row with `yipee.wav` as its `filename` and Mario's id as its `characterid`\n"
+        }
+      ]
+    },
+    {
+      "id": "vU-Z4PPYQSi",
+      "title": "Insert sounds for Luigi",
+      "summary": "",
+      "content": "Take a look at the data in this table. Can you see the \"one-to-many\" relationship now? Mario has two sounds, but each sound only has the one character.\n\nAfter that, insert two more sounds for Luigi; `ha-ha.wav` and `oh-yeah.wav`. Use Luigi's `characterid` for that column.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "Gi795_iMXHl",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have viewed all the data in the `sounds` table\n"
+        },
+        {
+          "id": "vKy-Ex8hMKf",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a row with `ha-ha.wav` as its `filename` and Luigi's `characterid`\nYou should have added a row with `oh-yeah.wav` as its `filename` and Luigi's `characterid`\n"
+        }
+      ]
+    },
+    {
+      "id": "IdoPLcezpGo",
+      "title": "Insert sounds for the rest",
+      "summary": "",
+      "content": "Add more sounds for the rest of the cast. Give the rows this data:\n\n| filename | characterid |\n| ----------- | ---------- |\n| yay.wav     | Peach's id |\n| woo-hoo.wav | Peach's id |\n| mm-hmm.wav  | Peach's id |\n| wha-ha.wav  | Toad's id  |\n| yahoo.wav   | Toad's id  |\n| yoo-hoo.wav | Mario's id |\n\nTry to do it with one command.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "FOvel67A9XL",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added the correct info for `yay.wav`\nYou should have added the correct info for `woo-hoo.wav`\nYou should have added the correct info for `mm-hmm.wav`\nYou should have added the correct info for `wha-ha.wav`\nYou should have added the correct info for `yahoo.wav`\nYou should have added the correct info for `yoo-hoo.wav`\n\n[comment]: # ( ========== ========== ========== Start creation of actions table ========== ========== ========== )\n"
+        }
+      ]
+    },
+    {
+      "id": "d1ESeOBUpTi",
+      "title": "Create actions table",
+      "summary": "",
+      "content": "Create a new table called `actions`. Give it two columns, `actionid` as a type of `SERIAL` and `PRIMARY KEY`, and `action` with a type of `VARCHAR` that is a max length of `20`, is `UNIQUE` and `NOT NULL`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "BuxH1zJvY2c",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a table named `actions`\nIt should have a column named `actionid` of type `SERIAL` and `PRIMARY KEY`\nIt should have a column name `action` of type `VARCHAR(20)` that is `UNIQUE` and `NOT NULL`\n"
+        }
+      ]
+    },
+    {
+      "id": "husVg0QkEkM",
+      "title": "Insert action data",
+      "summary": "",
+      "content": "The actions table won't have any foreign keys. It's going to have the last type of relationship I am going to talk about; \"many-to-many\". This is because \"many\" of the characters are going to have \"many\" actions. You will see why we don't need a foreign key for that in a moment.\n\nInsert three rows into your `actions` table. Give them the `action` values of `run`, `jump`, and `duck`.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "kP3I1bd96nm",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "Your actions table should have a row with `run` as it's `action` value\nYour actions table should have a row with `jump` as it's `action` value\nYour actions table should have a row with `duck` as it's `action` value\n\n[comment]: # ( ========== ========== ========== Start creation of characters_actions table ========== ========== ========== )\n"
+        }
+      ]
+    },
+    {
+      "id": "0miENF7-pBS",
+      "title": "Create junction table",
+      "summary": "",
+      "content": "\"Many-to-many\" relationships usually use a **junction** table that links two tables together, forming two \"one-to-many\" relationships. Your `characters` and `actions` tables have a \"many-to-many\" relationship. In order handle it without things getting messy, you should create one of these junction tables. Create a new table called `characters_actions`. Give it two columns; `characterid` and `actionid`. Make both of them of type `INT`, `NOT NULL`, and both of them a foreign key that references their respective id's from the `characters` and `actions` tables.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "XycEZhxwEzN",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have created a table named `characters_actions`\nIt should have a column named `characterid` that is an `INT`, `NOT NULL`, and is a correct foreign key\nIt should have a column name `actionid` that is an `INT`, `NOT NULL` and is a correct foreign key\n"
+        }
+      ]
+    },
+    {
+      "id": "ycITEsU6Zpq",
+      "title": "Create composite primary key",
+      "summary": "",
+      "content": "In your previous tables, you had a single column that was used as a primary key. This table will be a little different. You can also create a primary key from two columns known as a **composite** primary key. In this case, each character will have more than one action, and each action will have more than one character. On their own, neither of them can be a primary key. But never will you have the same combination of character and action, so together you can use both columns to determine that a row is unique. Use both columns in this table to add a composite primary key. Here's an example:\n\n```sql\nALTER TABLE tablename ADD PRIMARY KEY (column1, column2);\n```\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "B_Ojpi41Nu6",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have used `characterid` and `actionid` to create a composite primary key in the `characters_actions` table\n"
+        }
+      ]
+    },
+    {
+      "id": "xrogoZErFKH",
+      "title": "insert data into characters actions",
+      "summary": "",
+      "content": "Insert some data into the `characters_actions` table. Mario can perform all of the actions, so add three rows. Use his `characterid` three times and the `actionid` for the three different actions.\n",
+      "setup": null,
+      "steps": [
+        {
+          "id": "IrqcOIt7vMH",
+          "setup": {
+            "commits": [
+              "dd3f299"
+            ]
+          },
+          "content": "You should have added a row with Mario's `characterid` and the `actionid` for `run`\nYou should have added a row with Mario's `characterid` and the `actionid` for `jump`\nYou should have added a row with Mario's `characterid` and the `actionid` for `duck`\n\n"
+        }
+      ]
+    }
+  ]
+}
